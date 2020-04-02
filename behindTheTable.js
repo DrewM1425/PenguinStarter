@@ -5,14 +5,6 @@ var calcMean = function(penguin) //Calculates the mean given a penguin
 }
 
 
-
-
-
-
-
-
-
-
 var createTable = function(penguins)
 {
     //Creates a row for each penguin
@@ -22,8 +14,28 @@ var createTable = function(penguins)
         .enter()
       .append("tr");
     
+    //append images
     rows.append("img")
         .attr("src", function(penguin){return "imgs/"+penguin.picture});
+    
+    //append mean quiz scores
+    rows.append("h3")
+        .text(function(penguin){return d3.mean(penguin.quizes.map(function(quiz) 
+                                                        { return quiz.grade;}));});
+    
+    //append mean homework scores
+    rows.append("h3")
+        .text(function(penguin){return d3.mean(penguin.homework.map(function(hw) 
+                                                        { return hw.grade;}));});
+    
+    //append mean test scores
+    rows.append("h3")
+        .text(function(penguin){return d3.mean(penguin.test.map(function(test) 
+                                                        { return test.grade;}));});
+    
+    //append mean test scores
+    rows.append("h3")
+        .text(function(penguin){return penguin.final.grade;});
 }
 
 
