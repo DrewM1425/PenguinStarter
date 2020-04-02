@@ -28,7 +28,7 @@ var clearTable = function()
 
 var getTotalGrade = function(penguin) 
 {
-    grade = .35*getFinal(penguin) + .3*testMean(penguin) + .2*quizMean(penguin) + .15*hwMean(penguin);
+    grade = .35*getFinal(penguin) + .3*testMean(penguin) + 10*(.2*quizMean(penguin)) + 2*(.15*hwMean(penguin));
     return grade;
 }
 
