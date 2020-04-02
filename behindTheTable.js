@@ -16,14 +16,20 @@ var testMean = function(penguin)
 
 var getFinal = function(penguin)
 {
-    return penguin.final[0];
+    return penguin.final[0].grade;
 }
 
 var clearTable = function()
 {
-    d3.selectAll("#tb tobdy tr")
+    d3.selectAll("#tb tbody tr")
       .remove();
     
+}
+
+var getTotalGrade = function(penguin) 
+{
+    grade = .35*getFinal(penguin) + .3*testMean(penguin) + .2*quizMean(penguin) + .15*hwMean(penguin);
+    return grade;
 }
 
 
@@ -92,6 +98,21 @@ var initHeaders = function(penguins) //Adds interactivity
         clearTable();
         createTable(penguins);
     });
+    
+    d3.select("#grade")
+    .on("click",function()
+    { console.log("clicked");
+        penguins.sort(function(a,b)
+        {
+            aGrade = getTotalGrade(a);
+            bGrade = getTotalGrade(b);
+            if(aGrade > bGrade) {return 1}
+            else if(aGrade < bGrade) {return -1}
+            else { return 0;}
+        });
+        clearTable();
+        createTable(penguins);
+    });
 }
 
 var createTable = function(penguins)
@@ -101,7 +122,16 @@ var createTable = function(penguins)
       .selectAll("tr")
         .data(penguins)
         .enter()
-      .append("tr");
+      .append("tr")
+        .attr("class",function(penguin)
+            {
+                var grade = getTotalGrade(penguin);
+                if(grade < 70)
+                    {return "bad";}
+                else 
+                    {return "good";}
+            });
+    
     
     //append images
     rows.append("td")
@@ -126,9 +156,11 @@ var createTable = function(penguins)
     //append mean test scores
     rows.append("td")
         .text(function(penguin){return penguin.final.map(function(final)
-       
                                                         { return final.grade;});});
-    initHeaders(penguins);
+    
+    //append grade scores
+    rows.append("td")
+        .text(function(penguin){return getTotalGrade(penguin)});
 }
 
 
