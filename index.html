@@ -2,13 +2,87 @@
     <head>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     
+    <style>
+            body {
+              background-color: #0B0C10;
+              background-size: cover;
+              color: #C5C6C7;
+              font-family: Verdana,sans-serif;
+            }
+        
+            @keyframes slideIn {
+                0% {
+                transform: translateX(-100px);
+                opacity: 0;
+                }
+                100% {
+                transform: translateX(0);
+                opacity: 1;
+                }
+            }
+        
+            a, p, label {
+                color: #f6b93b;
+            }
+
+            a:hover{
+                color: #C5C6C7;
+            }
+        
+            h1 {
+                margin: 2px;
+                color: #f6b93b;
+            }
+        
+            img {
+                width: 140px;
+                height: 140px;
+            }
+        
+            td 
+            {
+                border: solid 3px cyan;
+                margin: 3px;
+                text-align: center;
+            }
+            th 
+            {
+                border: solid 3px cyan;
+                margin: 2px;
+                color: #f6b93b;
+            }
+        
+            table {
+                border-style:groove;
+                border-width: 5px;
+                border-color: cyan;
+                padding: 8px;
+                margin: 15px;
+                
+                position: relative;
+                opacity: 0;
+                animation: slideIn 1s forwards;
+                animation-delay: 1s;
+            }
+        
+    </style>
+    
     
     </head>
     <title>Penguin Summaries</title>
     
     <body>
-    <table>
         
+    <h1>Penguin Class</h1>
+        
+    <table>
+        <thead>
+            <th>Picture</th>
+            <th>Quiz Score</th>
+            <th>HW Score</th>
+            <th>Test Score</th>
+            <th>Final Score</th>
+        </thead>
     </table>
     
     
